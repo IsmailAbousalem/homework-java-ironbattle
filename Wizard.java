@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Wizard extends Character implements Attacker{
     private int mana = new Random().nextInt(51)+ 10;
-    private int intelligence new Random().nextInt(50)+ 1;
+    private int intelligence = new Random().nextInt(50)+ 1;
 
 
     public Wizard(String name, int hp, int mana, boolean isAlive, int intelligence){
