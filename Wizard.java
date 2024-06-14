@@ -32,5 +32,29 @@ public class Wizard extends Character implements Attacker{
     }
 
     //Override goes here to implement attack()
+
+    @Override
+    public void attack(){
+        if (mana > 0){
+        System.out.println("Wizard conjures a spell using Magic");
+        }else {
+            System.out.println("Out of mana... this Staff shall do: ");
+        }
+    }
+
+    //Override the attack method
+    @Override
+    public void attack(Character warrior){
+        if(mana > 0){
+            damage = this.getIntelligence();
+        }else {
+            damage = (int) (this.getIntelligence() * 0.5);
+        }
+    }
+
+    int newHp = warrior.getHp() - damage;
+    warrior.setHp(newHp > 0 ? newHp : 0);
+
+    System.out.println("Wizard attacked " + warrior.getName() + ". For " + damage + " damage!" )
 }
 
