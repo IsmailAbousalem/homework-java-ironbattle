@@ -1,5 +1,3 @@
-package src;
-
 public class Character{ //NEEDS TO IMPLEMENT ATTACKER WHEN ITS DONE
     private String id;
     private String name;
