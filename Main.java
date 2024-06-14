@@ -1,37 +1,34 @@
 public class Main {
     public static void main(String[] args) {
-//        Warrior warrior1 = new Warrior("Thor", 200, 50, 10);
-//        System.out.println("Created Warrior: " + warrior1.getName() +
-//                " HP: " + warrior1.getHp() +
-//                " Stamina: " + warrior1.getStamina() +
-//                " Strength: " + warrior1.getStrength());
-//
-//        Warrior warrior2 = new Warrior("Loki", 200, 50, 10);
-//        System.out.println("Created Warrior: " + warrior2.getName() +
-//                " HP: " + warrior2.getHp() +
-//                " Stamina: " + warrior2.getStamina() +
-//                " Strength: " + warrior2.getStrength());
-//
-//        // Perform attacks
-//        System.out.println("\nBattle starts!\n");
-//
-//        // Warrior 1 attacks Warrior 2
-//        warrior1.attack(warrior2);
-//        System.out.println(warrior2.getName() + " HP: " + warrior2.getHp() +
-//                " Stamina: " + warrior2.getStamina() + "\n");
-//
-//        // Warrior 2 attacks Warrior 1
-//        warrior2.attack(warrior1);
-//        System.out.println(warrior1.getName() + " HP: " + warrior1.getHp() +
-//                " Stamina: " + warrior1.getStamina() + "\n");
-//
-//        // Further attacks to demonstrate functionality
-//        warrior1.attack(warrior2);
-//        System.out.println(warrior2.getName() + " HP: " + warrior2.getHp() +
-//                " Stamina: " + warrior2.getStamina() + "\n");
-//
-//        warrior2.attack(warrior1);
-//        System.out.println(warrior1.getName() + " HP: " + warrior1.getHp() +
-//                " Stamina: " + warrior1.getStamina() + "\n");
+        Warrior warrior = new Warrior("Gladiator", 0, 0, 0);
+        Warrior warrior1 = new Warrior ("Spartacus", 0, 0, 0);
+
+        System.out.println("Warrior 0: " + warrior.getName() + " HP: " + warrior.getHp() + " Stamina: " + warrior.getStamina() + " Strength: " + warrior.getStrength());
+        System.out.println("Warrior 1: " + warrior1.getName() + " HP: " + warrior1.getHp() + " Stamina: " + warrior1.getStamina() + " Strength: " + warrior1.getStrength());
+
+        while (warrior.getHp() > 0 && warrior1.getHp() > 0) {
+            warrior.attack(warrior1);
+            System.out.println(warrior1.getName() + " is now at: " + warrior1.getHp() +  "HP");
+
+            if (warrior1.getHp() <= 0) {
+                break;
+            }
+
+            warrior1.attack(warrior);
+            System.out.println(warrior.getName() + " is now at: " + warrior.getHp() +  "HP");
+
+            try {
+                Thread.sleep(2000); // Pause for 2 seconds
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (warrior.getHp() > 0) {
+            System.out.println(warrior.getName() + " wins!");
+        } else {
+            System.out.println(warrior1.getName() + " wins!");
+        }
+
     }
 }
