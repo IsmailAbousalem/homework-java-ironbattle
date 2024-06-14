@@ -23,6 +23,10 @@ public class Character implements IAttacker{
 
     }
 
+    protected int generateRandomHp() {
+        return hp;
+    }
+
     //GETTERS & SETTERS
     public String getId() {
         return id;
@@ -46,6 +50,10 @@ public class Character implements IAttacker{
 
     public void setHp(int hp) {
         this.hp = hp;
+        if (this.hp <= 0) {
+            this.hp = 0;
+            this.isAlive = false;
+        }
     }
 
     public boolean isAlive() {

@@ -6,10 +6,11 @@ public class Warrior extends Character{
 
     //    CONSTRUCTOR
     public Warrior(String name, int hp, int stamina, int strength) {
-        super(name, hp);
-        this.stamina = stamina;
-        this.strength = strength;
+        super(name,(generateRandomHp(WARRIOR_MIN_HP, WARRIOR_MAX_HP)));
+        this.stamina = new Random().nextInt(41) + 10; // Random between 10 and 50
+        this.strength = new Random().nextInt(10) + 1; // Random between 1 and 10
     }
+
 
     //    GETTERS
     public int getStamina() {
@@ -22,13 +23,11 @@ public class Warrior extends Character{
 
     //    SETTERS
     public void setStamina(int stamina) {
-        Random random = new Random();
-        this.stamina = new Random().nextInt(41) + 10;
+        this.stamina = stamina;
     }
 
     public void setStrength(int strength) {
-        Random random = new Random();
-        this.strength = new Random().nextInt(10) + 1;
+        this.strength = strength;
     }
 
 
@@ -52,7 +51,7 @@ public class Warrior extends Character{
                     damage = this.strength;
                     character.setHp(character.getHp() - damage);
                     this.stamina -= 5;
-                    System.out.println("Warrior " + this.getName() + " attacked " + character.getName() + " for " + damage + " damage!");
+                    System.out.println("Warrior " + this.getName() + " attacked " + character.getName() + " with a heavy hit for " + damage + " damage!");
                 } else if (this.stamina <= 0) {
                     this.stamina += 2;
                     System.out.println("Warrior " + this.getName() + " is out of stamina! Warrior's stamina has been restored by 2 points!");
