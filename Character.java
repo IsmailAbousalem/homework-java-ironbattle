@@ -1,4 +1,6 @@
-public class Character{ //NEEDS TO IMPLEMENT ATTACKER WHEN ITS DONE
+import java.util.UUID;
+
+public class Character implements IAttacker{
     private String id;
     private String name;
     private int hp;
@@ -6,7 +8,7 @@ public class Character{ //NEEDS TO IMPLEMENT ATTACKER WHEN ITS DONE
 
     //CONSTRUCTOR
     public Character(String name, int hp) {
-        setId(""); //Auto-generated???
+        setId(); //Auto-generated
         setName(name);
         setHp(hp);
         setAlive(true);
@@ -18,13 +20,7 @@ public class Character{ //NEEDS TO IMPLEMENT ATTACKER WHEN ITS DONE
         return id;
     }
 
-    public void setId(String id) {
-//        IDEA FOR AUTO-GENERATION:
-//        String letters="abcdefg";
-//        String numbers="123456";
-        this.id=id;
-
-    }
+    public void setId() {this.id= UUID.randomUUID().toString();}
 
     public String getName() {
         return name;
@@ -49,4 +45,7 @@ public class Character{ //NEEDS TO IMPLEMENT ATTACKER WHEN ITS DONE
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
+
+    @Override
+    public void attack(Character character) {}
 }

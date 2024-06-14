@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Warrior extends Character implements IAttacker {
+public class Warrior extends Character{
     private int stamina;
     private int strength;
 
