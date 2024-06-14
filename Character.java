@@ -1,3 +1,4 @@
+import java.util.Random;
 import java.util.UUID;
 
 public class Character implements IAttacker{
@@ -5,6 +6,13 @@ public class Character implements IAttacker{
     private String name;
     private int hp;
     private boolean isAlive;
+
+    //CONSTANTS FOR HP
+    protected static final int WARRIOR_MIN_HP = 100;
+    protected static final int WARRIOR_MAX_HP = 200;
+    protected static final int WIZARD_MIN_HP = 50;
+    protected static final int WIZARD_MAX_HP = 100;
+
 
     //CONSTRUCTOR
     public Character(String name, int hp) {
@@ -20,7 +28,9 @@ public class Character implements IAttacker{
         return id;
     }
 
-    public void setId() {this.id= UUID.randomUUID().toString();}
+    public void setId() {
+        this.id = UUID.randomUUID().toString().substring(0, 5);
+    }
 
     public String getName() {
         return name;
@@ -48,4 +58,20 @@ public class Character implements IAttacker{
 
     @Override
     public void attack(Character character) {}
+
+    //HP GETTERS
+    public int getMinHp() { //Needs to be overwritten w/ proper constants
+        return 0;
+    }
+
+    public int getMaxHp() { //Needs to be overwritten w/ proper constants
+        return 0;
+    }
+
+    public static int generateRandomHp(int min, int max) {
+        Random random = new Random();
+        return min + random.nextInt(max - min + 1);
+    }
+
 }
+
