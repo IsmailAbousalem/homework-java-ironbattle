@@ -31,6 +31,7 @@ public class Wizard extends Character implements Attacker{
         this.intelligence = intelligence;
     }
 
+
     //Override goes here to implement attack()
 
     @Override
@@ -47,14 +48,19 @@ public class Wizard extends Character implements Attacker{
     public void attack(Character warrior){
         if(mana > 0){
             damage = this.getIntelligence();
+            mana--;
         }else {
             damage = (int) (this.getIntelligence() * 0.5);
         }
+
+        int newHp = warrior.getHp() - damage;
+        warrior.setHp(newHp > 0 ? newHp : 0);
+            if (this.newHp <= 0){
+                System.out.println("Oh dear..." + this.name + " is sleeping, with a sword throw the heart.");
+            }else if(warrior.newHp <= 0){
+                System.out.println(warrior.name + " is caught struck by a FURNANCE BLAST spell. \n Ashes to ashes... dust to dust.");
+            }
+        System.out.println("Wizard attacked " + warrior.getName() + ". For " + damage + " damage!" )
     }
-
-    int newHp = warrior.getHp() - damage;
-    warrior.setHp(newHp > 0 ? newHp : 0);
-
-    System.out.println("Wizard attacked " + warrior.getName() + ". For " + damage + " damage!" )
 }
 
