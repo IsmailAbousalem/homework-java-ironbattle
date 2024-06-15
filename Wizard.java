@@ -34,34 +34,30 @@ public class Wizard extends Character {
 
     //Override goes here to implement attack()
 
-    public void attack(){
-        if (mana > 0){
-            System.out.println("Wizard conjures a spell using Magic");
-        }else {
-            System.out.println("Out of mana... this Staff shall do: ");
-        }
-    }
-
-    //Override the attack method
     @Override
-    public void attack(Character target){
+    public void attack(Character target) {
         int damage;
-        if(mana > 0){
-            damage = this.getIntelligence();
-            mana--;
-        }else {
-            damage = (int) (this.getIntelligence() * 0.5);
-        }
-        int newHp = target.getHp() - damage;
-        target.setHp(newHp > 0 ? newHp : 0);
+        while (isAlive() && target.isAlive()) {
+            if (mana > 0) {
+                damage = this.getIntelligence();
+                System.out.println("Wizard conjures a spell using Magic");
+                mana--;
+            } else {
+                damage = (int) (this.getIntelligence() * 0.5);
+                System.out.println("Out of mana... this Staff shall do: ");
+            }
+            int newHp = target.getHp() - damage;
+            target.setHp(newHp > 0 ? newHp : 0);
 
-        // Check if the target is still alive
-        if (target.getHp() <= 0) {
-            target.setAlive(false);
-            System.out.println(target.getName() + " has been defeated.");
-        }
 
-        System.out.println("Wizard attacked " + target.getName() + " for " + damage + " damage!");
+            System.out.println("Wizard attacked " + target.getName() + " for " + damage + " damage!");
+            System.out.println(target.getName() + " currently has: " + target.getHp() + " remaining!");
+        }
+            // Check if the target is still alive
+            if (target.getHp() <= 0) {
+                target.setAlive(false);
+                System.out.println(target.getName() + " has been defeated.");
+            }
     }
 }
 
