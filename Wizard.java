@@ -8,7 +8,8 @@ public class Wizard extends Character {
     public Wizard(String name, int hp, int mana, int intelligence){
         super(name, generateRandomHp(WIZARD_MIN_HP, WIZARD_MAX_HP));
         this.mana = new Random().nextInt(51)+ 10;
-        this.intelligence = new Random().nextInt(50)+ 1;
+//        this.intelligence = new Random().nextInt(50)+ 1;
+        this.intelligence = intelligence;
     }
 
     //Getter for mana
@@ -23,7 +24,7 @@ public class Wizard extends Character {
 
     //getter for intel
     public int getIntelligence() {
-        return intelligence;
+        return intelligence = new Random().nextInt(50)+ 1;
     }
 
     //setter for intel
