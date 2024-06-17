@@ -5,6 +5,7 @@ public class Character implements IAttacker{
     private String id;
     private String name;
     private int hp;
+    private int originalHp;
     private boolean isAlive;
 
     //CONSTANTS FOR HP
@@ -19,6 +20,7 @@ public class Character implements IAttacker{
         setId(); //Auto-generated
         setName(name);
         setHp(hp);
+        setOriginalHp(hp);
         setAlive(true);
 
     }
@@ -52,8 +54,16 @@ public class Character implements IAttacker{
         this.hp = hp;
         if (this.hp <= 0) {
             this.hp = 0;
-            this.isAlive = false;
+            setAlive(false);
         }
+    }
+
+    public int getOriginalHp() {
+        return originalHp;
+    }
+
+    public void setOriginalHp(int originalHp) {
+        this.originalHp = originalHp;
     }
 
     public boolean isAlive() {
@@ -79,6 +89,11 @@ public class Character implements IAttacker{
     public static int generateRandomHp(int min, int max) {
         Random random = new Random();
         return min + random.nextInt(max - min + 1);
+    }
+
+    public void reestablishHp() {
+        setHp(getOriginalHp());
+        setAlive(true);
     }
 
 }
