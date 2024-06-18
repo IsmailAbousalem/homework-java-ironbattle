@@ -50,7 +50,8 @@ public class Wizard extends Character {
             System.out.println("\uD83E\uDDD9" + this.getName() + "\uD83E\uDDD9" + " uses the staff as a weapon, dealing 2 damage. " );
             this.mana += 1;
         }else if (attackType.equals("fireHail")){
-            System.out.println("\uD83E\uDDD9" + this.getName() + "\uD83E\uDDD9" + " has " + this.getIntelligence() );
+            //this was to see the intelligence of the character
+//            System.out.println("\uD83E\uDDD9" + this.getName() + "\uD83E\uDDD9" + " has " + this.getIntelligence() );
             damage = this.getIntelligence();
             character.setHp(character.getHp() - damage);
             System.out.println("\uD83E\uDDD9" + this.getName() + "\uD83E\uDDD9" + " conjures a Fire Hail Storm, dealing " + damage);
