@@ -36,29 +36,65 @@ public class Wizard extends Character {
     //Override goes here to implement attack()
 
     @Override
-    public void attack(Character target) {
-        int damage;
-        while (isAlive() && target.isAlive()) {
-            if (mana > 0) {
-                damage = this.getIntelligence();
-                System.out.println("Wizard conjures a spell using Magic");
-                mana--;
-            } else {
-                damage = (int) (this.getIntelligence() * 0.5);
-                System.out.println("Out of mana... this Staff shall do: ");
-            }
-            int newHp = target.getHp() - damage;
-            target.setHp(newHp > 0 ? newHp : 0);
+    public void attack(Character character) {
+        int damage = 0;
+        Random random = new Random();
+        String attackType = random.nextBoolean() ? "staffAttack" : "fireHail";
 
-
-            System.out.println("Wizard attacked " + target.getName() + " for " + damage + " damage!");
-            System.out.println(target.getName() + " currently has: " + target.getHp() + " remaining!");
+        if(this.mana <= 0){
+            this.mana += 2;
+            System.out.println("\uD83E\uDDD9" + this.getName() + "\uD83E\uDDD9" + " is out of mana! Regenerates for 2 mana");
+        }else if(attackType.equals("staffAttack") && this.getMana() > 0){
+            damage = 2;
+            character.setHp(character.getHp() - damage);
+            System.out.println("\uD83E\uDDD9" + this.getName() + "\uD83E\uDDD9" + " uses the staff as a weapon, dealing 2 damage. " );
+            this.mana += 1;
+        }else if (attackType.equals("fireHail")){
+            //this was to see the intelligence of the character
+//            System.out.println("\uD83E\uDDD9" + this.getName() + "\uD83E\uDDD9" + " has " + this.getIntelligence() );
+            damage = this.getIntelligence();
+            character.setHp(character.getHp() - damage);
+            System.out.println("\uD83E\uDDD9" + this.getName() + "\uD83E\uDDD9" + " conjures a Fire Hail Storm, dealing " + damage);
+            this.mana -= 5;
         }
-            // Check if the target is still alive
-            if (target.getHp() <= 0) {
-                target.setAlive(false);
-                System.out.println(target.getName() + " has been defeated.");
-            }
+
+
+//        int newHp;
+//        while (isAlive() && character.isAlive()) {
+//
+//            Random random = new Random();
+//
+//
+//            String attackType;
+//
+//            attackType = random.nextBoolean() ? "StaffAttack" : "fireHail";
+//            if(attackType.equals("StaffAttack")){
+//                damage = (int) (this.getIntelligence() * 0.5);
+//                System.out.println("Spell failed, but this wooden staff wont!");
+//                newHp = character.getHp() - damage;
+//                character.setHp(newHp > 0 ? newHp : 0);
+//                mana++;
+//            }else if(attackType.equals("fireHail")){
+//                damage = this.getIntelligence();
+//                System.out.println("Wizard conjures a hail storm of fire");
+//                newHp = character.getHp() - damage;
+//                character.setHp(newHp > 0 ? newHp : 0);
+//                mana -= 5;
+//            }
+//
+////            int newHp = target.getHp() - damage;
+////            target.setHp(newHp > 0 ? newHp : 0);
+//
+//
+//            System.out.println("Wizard attacked " + character.getName() + " for " + damage + " damage!");
+//            System.out.println(character.getName() + " currently has: " + character.getHp() + " remaining!");
+//        }
+//
+//            // Check if the target is still alive
+//            if (character.getHp() <= 0) {
+//                character.setAlive(false);
+//                System.out.println(character.getName() + " has been defeated.");
+//            }
     }
 }
 
