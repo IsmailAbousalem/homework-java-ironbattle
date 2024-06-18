@@ -6,9 +6,10 @@ public class Warrior extends Character{
 
     //    CONSTRUCTOR
     public Warrior(String name, int hp, int stamina, int strength) {
-        super(name,(generateRandomHp(WARRIOR_MIN_HP, WARRIOR_MAX_HP)));
+        super(name, generateRandomHp(WARRIOR_MIN_HP, WARRIOR_MAX_HP));
         this.stamina = new Random().nextInt(41) + 10; // Random between 10 and 50
-        this.strength = new Random().nextInt(10) + 1; // Random between 1 and 10
+//        this.strength = new Random().nextInt(10) + 1;         // Random between 1 and 10
+        this.strength = strength;
     }
 
 
@@ -18,7 +19,7 @@ public class Warrior extends Character{
     }
 
     public int getStrength() {
-        return strength;
+        return strength = new Random().nextInt(10) + 1;
     }
 
     //    SETTERS
@@ -31,6 +32,7 @@ public class Warrior extends Character{
     }
 
 
+
     @Override
     public void attack(Character character) {
         Random random = new Random();
@@ -38,33 +40,28 @@ public class Warrior extends Character{
 
         attackType = random.nextBoolean() ? "lightAttack" : "heavyAttack";
         int damage;
+//        System.out.println("Warrior " + this.getName() + " starts with " + this.getStamina() + " stamina point(s).");   PRINT STARTING STAMINA
 
-        switch (attackType) {
-            case "lightAttack":
-                damage = this.strength / 2;
-                character.setHp(character.getHp() - damage);
-                System.out.println("Warrior " + this.getName() + " executed a Weak Attack for " + damage + " points of damage! Stamina increases 1 point.");
-                break;
-
-            case "heavyAttack":
-                if (this.stamina >= 5) {
-                    damage = this.strength;
-                    character.setHp(character.getHp() - damage);
-                    this.stamina -= 5;
-                    System.out.println("Warrior " + this.getName() + " attacked " + character.getName() + " with a heavy hit for " + damage + " damage!");
-                } else if (this.stamina <= 0) {
-                    this.stamina += 2;
-                    System.out.println("Warrior " + this.getName() + " is out of stamina! Warrior's stamina has been restored by 2 points!");
-                } else {
-                    // If Warrior is too weak to do a heavy attack, do a light attack instead
-                    damage = this.strength / 2;
-                    character.setHp(character.getHp() - damage);
-                    System.out.println("Warrior " + this.getName() + " executed a Weak Attack for " + damage + " points of damage! Stamina increases 1 point.");
-                }
-                break;
-
-            default:
-                break;
+        if(this.getStamina() > 0 && (attackType.equals("lightAttack") || this.getStamina() < 5)){
+            damage = (int) (this.getStrength() * 0.5);
+            stamina += 1;
+            System.out.println("\u2694\uFE0F Warrior \u2694\uFE0F " + this.getName() + " executed a Weak Attack for " + damage + " points of damage!");
+            character.setHp(character.getHp() - damage);
+            System.out.println("Stamina Increased 1 point to: " + this.getStamina());
+            System.out.println("-----------------------------------------------------------");
+        }else if(this.getStamina() >= 5 && attackType.equals("heavyAttack")){
+            damage = this.strength;
+            character.setHp(character.getHp() - damage);
+            this.stamina -= 5;
+            System.out.println("\u2694\uFE0F Warrior \u2694\uFE0F " + this.getName() + " attacked " + character.getName() + " with a heavy hit for " + damage + " damage!");
+            System.out.println("Stamina Decreased by 5 points to: " + this.getStamina());
+            System.out.println("-----------------------------------------------------------");
+        } else if (this.getStamina() <= 0) {
+            this.stamina += 2;
+            System.out.println("\u2694\uFE0F Warrior \u2694\uFE0F " + this.getName() + " is out of stamina! Warrior's stamina has been restored by 2 points!");
+            System.out.println("-----------------------------------------------------------");
         }
+
     }
+
 }
