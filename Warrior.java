@@ -4,6 +4,10 @@ public class Warrior extends Character{
     private int stamina;
     private int strength;
 
+    //CONSTANTS FOR HP
+    protected static final int WARRIOR_MIN_HP = 100;
+    protected static final int WARRIOR_MAX_HP = 200;
+
     //    CONSTRUCTOR
     public Warrior(String name, int hp, int stamina, int strength) {
         super(name, generateRandomHp(WARRIOR_MIN_HP, WARRIOR_MAX_HP));

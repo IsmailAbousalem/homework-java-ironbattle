@@ -4,6 +4,10 @@ public class Wizard extends Character {
     private int mana;
     private int intelligence;
 
+    //CONSTANTS FOR HP
+    protected static final int WIZARD_MIN_HP = 50;
+    protected static final int WIZARD_MAX_HP = 100;
+
 
     public Wizard(String name, int hp, int mana, int intelligence){
         super(name, generateRandomHp(WIZARD_MIN_HP, WIZARD_MAX_HP));
