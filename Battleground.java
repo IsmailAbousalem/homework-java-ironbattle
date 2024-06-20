@@ -7,7 +7,7 @@ public class Battleground {
         setCharacter1(c1);
         setCharacter2(c2);
         fight();
-
+// THIS IS A TEST COMMENT
     }
 
     public static void setCharacter1(Character c1) {
